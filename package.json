@@ -17,7 +17,9 @@
         "passport": "~0.1.17",
         "passport-local": "~0.1.6",
         "winston": "~0.7.1",
-        "express-trace": "0.0.3"
+        "express-trace": "0.0.3",
+        "connect-assets": "~2.4.3",
+        "jade": "~0.32.0"
     },
     "devDependencies": {
         "mocha": "latest"
@@ -25,7 +27,7 @@
     "main": "./app/index.js",
     "scripts": {
         "install": "coffee -c -o app src",
-        "start": "./app/index.js"
+        "start": "node ./app/index.js"
     },
     "constants": {
         "title": "structure app",

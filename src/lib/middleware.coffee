@@ -1,6 +1,7 @@
 express = require("express")
 MongoStore = require("connect-mongo")(express)
 connect_timeout = require("connect-timeout")
+assets = require("connect-assets")
 
 # Middleware
 module.exports = (app, config, passportMiddleware) ->
@@ -20,7 +21,8 @@ module.exports = (app, config, passportMiddleware) ->
   )
   
   # Middleware stack for all requests
-  app.use express["static"](app.set("public")) # static files in /public
+  app.use assets()
+  app.use express["static"](process.cwd() + '/public') # static files in /public
   app.use connect_timeout(time: config.request_timeout) # request timeouts
   app.use express.cookieParser() # req.cookies
   app.use session_middleware # req.session
