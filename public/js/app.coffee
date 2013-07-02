@@ -1,3 +1,13 @@
+#= require ./lib/angular/angular
+#= require ./lib/angular/angular-resource
+#= require ./lib/angular/angular-cookies
+#= require ./lib/angular/angular-loader
+#= require ./lib/angular/angular
+#= require ./controllers
+#= require ./directives
+#= require ./services
+#= require ./filters
+
 "use strict"
 
 # Declare app level module which depends on filters, and services
@@ -15,16 +25,16 @@
 #         Read all about it here: http://www.espeo.pl/2012/02/26/authentication-in-angularjs-application
 #         
 # save the current url so we can redirect the user back
-angular.module("myApp", ["myApp.filters", "myApp.services", "myApp.directives"]).config(["$routeProvider", "$locationProvider", "$httpProvider", ($routeProvider, $locationProvider, $httpProvider) ->
+angular.module("myApp", ["myApp.filters", "myApp.services", "myApp.directives", "myApp.controllers"]).config(["$routeProvider", "$locationProvider", "$httpProvider", ($routeProvider, $locationProvider, $httpProvider) ->
   $routeProvider.when("/",
-    templateUrl: "/partials/index.html"
-    controller: IndexCtrl
+    templateUrl: "/partials/index"
+    controller: 'IndexCtrl'
   ).when("/login",
-    templateUrl: "/partials/login.html"
+    templateUrl: "/partials/login"
   ).when("/todos",
-    templateUrl: "/partials/todos.html"
-    controller: TodosCtrl
-  ).otherwise templateUrl: "/partials/404.html"
+    templateUrl: "/partials/todos"
+    controller: 'TodosCtrl'
+  ).otherwise templateUrl: "/partials/404"
   $locationProvider.html5Mode true
   interceptor = ["$q", "$location", "$rootScope", ($q, $location, $rootScope) ->
     success = (response) ->

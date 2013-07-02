@@ -35,6 +35,7 @@ module.exports = (app, homeController, userController, todoController, apiContro
     return next()  if req.isAuthenticated()
     res.send 401
   app.get "/", homeController.index
+  app.get /\/partials\/(.+)/, homeController.partial
   app.get "/user", userController.getCurrent
   app.post "/user/login", userController.authenticate
   app.post "/user/register", userController.create

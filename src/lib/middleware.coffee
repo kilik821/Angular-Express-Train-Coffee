@@ -21,7 +21,7 @@ module.exports = (app, config, passportMiddleware) ->
   )
   
   # Middleware stack for all requests
-  app.use assets()
+  app.use assets({src: 'public'})
   app.use express["static"](process.cwd() + '/public') # static files in /public
   app.use connect_timeout(time: config.request_timeout) # request timeouts
   app.use express.cookieParser() # req.cookies

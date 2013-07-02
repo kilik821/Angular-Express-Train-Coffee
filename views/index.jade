@@ -23,12 +23,6 @@ head
                 li
                   a(ng-click='logout()') Log Out
     .container(ng-view='ng-view')
-  script(src='/js/lib/jquery/jquery.js')
-  script(src='/js/lib/bootstrap/bootstrap.js')
-  script(src='/js/lib/angular/angular.js')
-  script(src='/js/lib/angular/angular-resource.js')
-  script(src='/js/app.js')
-  script(src='/js/services.js')
-  script(src='/js/controllers.js')
-  script(src='/js/filters.js')
-  script(src='/js/directives.js')
+  != js('lib/jquery')
+  != js('lib/bootstrap')
+  != js('app')
