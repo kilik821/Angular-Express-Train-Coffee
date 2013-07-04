@@ -4,7 +4,7 @@
         "key": "boggle at the situation",
         "secret": "boggle at the situation"
     },
-    "request_timeout": 1000,
+    "request_timeout": 10000,
     "port": "{{PORT}}",
     "mongodb": {
         "uri": "{{MONGOLAB_URI}}"

@@ -2,16 +2,12 @@
 html(ng-app='myApp')
 head
   title Angular Express Train
-  link(rel='stylesheet', href='/css/style.css')
-  link(rel='stylesheet', href='/css/bootstrap.min.css')
+  != css('app')
   body
     .container
-      .navbar.navbar-inverse
+      .navbar.navbar-fixed-top.navbar-inverse
         .navbar-inner
           a.brand(ng-href='/') Angular Express Train
-          ul.nav
-            li
-              a(ng-href='/todos', ng-show='user.username') My Todos
           ul.nav.pull-right
             li(ng-hide='user.username')
               a(ng-href='/login') Login/Register

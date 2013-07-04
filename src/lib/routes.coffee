@@ -1,4 +1,4 @@
-module.exports = (app, homeController, userController, todoController, apiController) ->
+module.exports = (app, acl, homeController, userController, apiController) ->
   
   # Home
   
@@ -42,11 +42,6 @@ module.exports = (app, homeController, userController, todoController, apiContro
   app.post "/user/login", userController.authenticate
   app.post "/user/register", userController.create
   app.post "/user/logout", userController.kill
-
-  app.get "/api/Todo", ensureAuthenticated, todoController.preSearch, apiController.search
-  app.post "/api/Todo", ensureAuthenticated, todoController.preCreate, apiController.create
-  app.put "/api/Todo/:id", ensureAuthenticated, todoController.preUpdate, apiController.update
-  app.del "/api/Todo/:id", ensureAuthenticated, todoController.preDestroy, apiController.destroy
 
   app.get "/api/:model", ensureAuthenticated, apiController.search
   app.post "/api/:model", ensureAuthenticated, apiController.create
