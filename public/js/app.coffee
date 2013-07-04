@@ -31,9 +31,6 @@ angular.module("myApp", ["myApp.filters", "myApp.services", "myApp.directives", 
     controller: 'IndexCtrl'
   ).when("/login",
     templateUrl: "/partials/login"
-  ).when("/todos",
-    templateUrl: "/partials/todos"
-    controller: 'TodosCtrl'
   ).otherwise templateUrl: "/partials/404"
   $locationProvider.html5Mode true
   interceptor = ["$q", "$location", "$rootScope", ($q, $location, $rootScope) ->
