@@ -34,22 +34,28 @@ module.exports = (app, homeController, userController, todoController, apiContro
   ensureAuthenticated = (req, res, next) ->
     return next()  if req.isAuthenticated()
     res.send 401
+
   app.get "/", homeController.index
   app.get /\/partials\/(.+)/, homeController.partial
+
   app.get "/user", userController.getCurrent
   app.post "/user/login", userController.authenticate
   app.post "/user/register", userController.create
   app.post "/user/logout", userController.kill
+
   app.get "/api/Todo", ensureAuthenticated, todoController.preSearch, apiController.search
   app.post "/api/Todo", ensureAuthenticated, todoController.preCreate, apiController.create
   app.post "/api/Todo/:id", ensureAuthenticated, todoController.preUpdate, apiController.update
   app.del "/api/Todo/:id", ensureAuthenticated, todoController.preDestroy, apiController.destroy
+
   app.get "/api/:model", ensureAuthenticated, apiController.search
   app.post "/api/:model", ensureAuthenticated, apiController.create
   app.get "/api/:model/:id", ensureAuthenticated, apiController.read
   app.post "/api/:model/:id", ensureAuthenticated, apiController.update
   app.del "/api/:model/:id", ensureAuthenticated, apiController.destroy
+
   app.get "*", homeController.index
+
   app.param "model", (req, res, next, model) ->
     console.log app
     Model = app.models[model]
