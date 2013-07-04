@@ -45,13 +45,13 @@ module.exports = (app, homeController, userController, todoController, apiContro
 
   app.get "/api/Todo", ensureAuthenticated, todoController.preSearch, apiController.search
   app.post "/api/Todo", ensureAuthenticated, todoController.preCreate, apiController.create
-  app.post "/api/Todo/:id", ensureAuthenticated, todoController.preUpdate, apiController.update
+  app.put "/api/Todo/:id", ensureAuthenticated, todoController.preUpdate, apiController.update
   app.del "/api/Todo/:id", ensureAuthenticated, todoController.preDestroy, apiController.destroy
 
   app.get "/api/:model", ensureAuthenticated, apiController.search
   app.post "/api/:model", ensureAuthenticated, apiController.create
   app.get "/api/:model/:id", ensureAuthenticated, apiController.read
-  app.post "/api/:model/:id", ensureAuthenticated, apiController.update
+  app.put "/api/:model/:id", ensureAuthenticated, apiController.update
   app.del "/api/:model/:id", ensureAuthenticated, apiController.destroy
 
   app.get "*", homeController.index
