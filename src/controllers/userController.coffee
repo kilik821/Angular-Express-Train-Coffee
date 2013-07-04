@@ -37,11 +37,8 @@ module.exports = (app, User, passportMiddleware) ->
           return next(err)  if err
           req.logIn user, ->
             res.send "ok", 200
-
-
-
   ]
-  
+
   #logout/kill session
   kill: [(req, res) ->
     if req.session

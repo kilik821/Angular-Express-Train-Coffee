@@ -1,11 +1,9 @@
 module.exports = (app) ->
   controller = {}
-  
+
   #
   #     Generic CRUD functions for any model
   #     
-  
-  #
   #         route functions get 3 args - the request object, the response object, and next - a callback to move on
   #         to the next middleware.
   #         req.query = json object with query string arguments
@@ -15,7 +13,7 @@ module.exports = (app) ->
   controller.search = [(req, res, next) ->
     console.log "starting api.search"
     query = req.query
-    
+
     #req.Model is a value I set in libs/params.js
     req.Model.find query, (err, docs) ->
       return next(err)  if err
@@ -40,7 +38,8 @@ module.exports = (app) ->
   ]
   controller.update = [(req, res, next) ->
     id = req.params.id
-    delete req.body._id #removing the _id from the model to prevent mongo from thinking we are trying to change its type
+    delete req.body._id
+    #removing the _id from the model to prevent mongo from thinking we are trying to change its type
 
     req.Model.findByIdAndUpdate id, req.body, (err, doc) ->
       return next(err)  if err

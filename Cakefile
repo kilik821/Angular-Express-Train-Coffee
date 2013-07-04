@@ -40,7 +40,7 @@ test = (callback) ->
     '--require'
     'should'
     '--require'
-    './server'
+    './app'
   ]
   try
     cmd = which.sync 'mocha'
@@ -91,11 +91,11 @@ task 'dev', 'start dev env', ->
     '.app,views',
     '-e',
     'js|jade',
-    'server'
+    'app'
   ]
   supervisor.stdout.pipe process.stdout
   supervisor.stderr.pipe process.stderr
-  log 'Watching js files and running server', green
+  log 'Watching js files and running app', green
 
 task 'debug', 'start debug env', ->
   # watch_coffee
@@ -108,7 +108,7 @@ task 'debug', 'start debug env', ->
   # run debug mode
   app = spawn 'node', [
     '--debug',
-    'server'
+    'app'
   ]
   app.stdout.pipe process.stdout
   app.stderr.pipe process.stderr
@@ -120,7 +120,7 @@ task 'debug', 'start debug env', ->
   chrome = spawn 'google-chrome', ['http://0.0.0.0:8080/debug?port=5858']
   chrome.stdout.pipe process.stdout
   chrome.stderr.pipe process.stderr
-  log 'Debugging server', green
+  log 'Debugging app', green
 
 option '-n', '--name [NAME]', 'name of model to `scaffold`'
 task 'scaffold', 'scaffold model/controller/test', (options) ->
