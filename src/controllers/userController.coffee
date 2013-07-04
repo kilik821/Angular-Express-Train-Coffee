@@ -20,15 +20,13 @@ module.exports = (app, User, passportMiddleware) ->
       return res.send("Invalid username or password.", 400)  unless user
       req.logIn user, (err) ->
         return next(err)  if err
-        res.send "Ok", 200
+        res.send 200
 
     ) req, res, next
   ]
   create: [(req, res, next) ->
     user = new User(req.body)
-    User.findOne
-      username: user.username
-    , (err, results) ->
+    User.findOne username: user.username, (err, results) ->
       return next(err)  if err
       if results
         res.send "A user with this username already exists.", 400
@@ -36,15 +34,15 @@ module.exports = (app, User, passportMiddleware) ->
         user.save (err, results) ->
           return next(err)  if err
           req.logIn user, ->
-            res.send "ok", 200
+            res.send 200
   ]
 
   #logout/kill session
   kill: [(req, res) ->
     if req.session
       req.session.destroy ->
-        res.send "ok", 200
+        res.send 200
 
     else
-      res.send "ok", 200
+      res.send 200
   ]
